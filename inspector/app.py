@@ -1,5 +1,4 @@
-from inspector.extractor.attendee import Attendee_2019
+from inspector.provider import Provider
 
-Attendee_2019.extract()
-Attendee_2019.transform()
-Attendee_2019.peek()
+
+Provider.get_potential_sponsors_by_level()

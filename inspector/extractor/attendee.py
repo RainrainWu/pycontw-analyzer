@@ -18,7 +18,7 @@ class Attendee_2019(Extractor):
         'job': 'Job Title / 職稱 (If you are a student, fill in "student")',
         'region': 'Come From / 國家或地區',
     }
-    output_data = {}
+    export_data = {}
 
     @classmethod
     def extract(cls):
@@ -55,6 +55,8 @@ class Attendee_2019(Extractor):
                 for x in cls.topic_header.values()
             ],
         }
+
+        # collect data with specified index and reform them
         topic_data = {
             'standard': (
                 [row[x] if x != -1 else '' for x in topic_index['standard']]
@@ -70,10 +72,19 @@ class Attendee_2019(Extractor):
             ),
         }
 
-        cls.output_data = list(topic_data['standard']) + list(topic_data['reserved']) + list(topic_data['discount'])
+        # concat all types of attendee data
+        cls.export_data = list(topic_data['standard']) + list(topic_data['reserved']) + list(topic_data['discount'])
 
     @classmethod
     def peek(cls):
 
         for i in range(5):
-            print(cls.output_data[i])
+            print(cls.export_data[i])
+
+    @classmethod
+    def export(cls):
+
+        return cls.export_data
+
+Attendee_2019.extract()
+Attendee_2019.transform()
