@@ -1,0 +1,6 @@
+# raw data
+data/
+data/*
+*.csv
+*.xls
+*.xlsx
