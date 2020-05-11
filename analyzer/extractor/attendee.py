@@ -1,7 +1,7 @@
 import csv
 
-from inspector.extractor import Extractor
-from inspector.config import (
+from analyzer.extractor import Extractor
+from analyzer.config import (
     ATTENDEE_STANDARD,
     ATTENDEE_RESERVED,
     ATTENDEE_DISCOUNT
