@@ -17,9 +17,9 @@ DATA = "./data"
 
 # attendee
 ATTENDEE = DATA + "/attendee"
-ATTENDEE_STANDARD = ATTENDEE + "/standard.csv"
-ATTENDEE_RESERVED = ATTENDEE + "/reserved.csv"
-ATTENDEE_DISCOUNT = ATTENDEE + "/discount.csv"
+ATTENDEE_STANDARD = ATTENDEE + "/standard_2019.csv"
+ATTENDEE_RESERVED = ATTENDEE + "/reserved_2019.csv"
+ATTENDEE_DISCOUNT = ATTENDEE + "/discount_2019.csv"
 
 # program
 PROGRAMS = DATA + "/programs"

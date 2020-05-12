@@ -1,6 +1,6 @@
 # pycontw-inspector
 
-pycontw-inspector is an integrated analyzer that can extract various types of raw data (e.g. attendee, programs, checkins), and inspect some valuable information via customized strtegies construct by each team with their different domain knowledge.
+pycontw-inspector is an integrated analyzer that can extract various types of raw data (e.g. attendee, programs, checkins), and inspect some valuable information via customized strategies construct by each team with their different domain knowledge.
 
 # Getting Started
 ## Prerequisites
@@ -25,13 +25,13 @@ pycontw-inspector currently construct by three layers:
 - inspector:
     inspect valuable information via implementing strategies.
 
-## Default Raw Data Tree
+## Default Raw Data File Tree
 ```
 data
 ├── attendee
-│   ├── discount.csv
-│   ├── reserved.csv
-│   └── standard.csv
+│   ├── discount_2019.csv
+│   ├── reserved_2019.csv
+│   └── standard_2019.csv
 └── programs
     └── program_2019.csv
 ```
