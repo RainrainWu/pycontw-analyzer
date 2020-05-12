@@ -33,8 +33,8 @@ class Extractor(abc.ABC):
     layer = "extracor"
     peek_tpl = "\n===[ {NAME} current {FIELD} ]==="
     extract_log_tpl = "extractor {NAME} start extracting raw data..."
-    hold_data = [] # type: Any
-    export_data = [] # type: Any
+    hold_data = []  # type: Any
+    export_data = []  # type: Any
 
     @classmethod
     @abc.abstractmethod
