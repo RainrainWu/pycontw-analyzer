@@ -25,8 +25,19 @@ pycontw-inspector currently construct by three layers:
 - inspector:
     inspect valuable information via implementing strategies.
 
+## Default Raw Data Tree
+```
+data
+├── attendee
+│   ├── discount.csv
+│   ├── reserved.csv
+│   └── standard.csv
+└── programs
+    └── program_2019.csv
+```
+
 ## Execute Task
-[invoke](https://pypi.org/project/invoke/) is used for the tasks management, some available tasks is list below:
+[invoke](https://pypi.org/project/invoke/) is used for the tasks management, some available tasks list below:
 
 ### For Environment
 - inv env.clean
@@ -40,3 +51,6 @@ pycontw-inspector currently construct by three layers:
 
 ### For Test
 - inv test.pytest
+
+# Contributors
+- [Rain Wu](https://github.com/RainrainWu)
