@@ -17,5 +17,6 @@ ATTENDEE_STANDARD = ATTENDEE + "/standard.csv"
 ATTENDEE_RESERVED = ATTENDEE + "/reserved.csv"
 ATTENDEE_DISCOUNT = ATTENDEE + "/discount.csv"
 
-# session
-SESSION = DATA + "/session"
+# program
+PROGRAMS = DATA + "/programs"
+PROGRAM_2019 = PROGRAMS + "/program_2019.csv"

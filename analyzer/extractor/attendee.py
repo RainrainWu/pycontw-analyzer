@@ -12,7 +12,7 @@ from analyzer.config import ATTENDEE_STANDARD, ATTENDEE_RESERVED, ATTENDEE_DISCO
 
 class Attendee2019(Extractor):
     """
-    Attendee_2019 is a extractor for attendee data in 2019.
+    Attendee2019 is a extractor for attendee data in 2019.
     """
 
     topic_header = {
