@@ -1,3 +1,4 @@
 [MASTER]
 disable=
-    C0301, # line-too-long
+    C0301, # line too long
+    R0903, # too few public methods

@@ -6,15 +6,34 @@ method in order to communicate with analyzer.provider.
 """
 
 import abc
+from typing import Any
+
+from analyzer.config import PEEK_MAXIMUM
 
 
-class Extractor(metaclass=abc.ABCMeta):
+class Extractor(abc.ABC):
     """
-    Extractor is the abstract class template for extractor instances.
+    Extractor is the abstract class template for extractor instances,
+    the class attributes hold_data and export_data could be overwritten
+    by some data type that iterable (e.g. dict, set).
+
+    The hold_data is act as a buffer that stores temporary data
+    during your operations, you can check it via peek_hold_data which
+    can make your debugging more convenient.
+
+    But the export_data is for final data only, it means no artifacts
+    should be put into the field to avoid unexpected errors while
+    anlayzer.provider try to collect data from extractors.
+
+    The mechanism of extractor decribed above could be overwrote as
+    you want, but just needs to meets the communication required
+    with analyzer.provider.
     """
 
     layer = "extracor"
-    data = None
+    peek_tpl = "\n===[ {NAME} current {FIELD} ]==="
+    hold_data = [] # type: Any
+    export_data = [] # type: Any
 
     @classmethod
     @abc.abstractmethod
@@ -35,19 +54,47 @@ class Extractor(metaclass=abc.ABCMeta):
         raise NotImplementedError("Extractor.transform not implemented!")
 
     @classmethod
-    @abc.abstractmethod
-    def peek(cls):
+    def peek_hold_data(cls):
         """
-        The show method should be implemented to print out
-        data schema.
+        The peek_hold_data method was implemented to print out
+        current hold_data within the extractor.
         """
-        raise NotImplementedError("Extractor.peek not implemented!")
+        # peek hold data
+        print(cls.peek_tpl.format(
+            NAME=cls.__name__,
+            FIELD="hold_data"
+        ))
+        try:
+            for i in range(min(len(cls.hold_data), PEEK_MAXIMUM)):
+                print(cls.export_data[i])
+        except TypeError:
+            print("current hold_data is not iterable")
+
+        print("")
 
     @classmethod
-    @abc.abstractmethod
+    def peek_export_data(cls):
+        """
+        The peek_export_data method was implemented to print out
+        current export_data within the extractor.
+        """
+        # peek export data
+        print(cls.peek_tpl.format(
+            NAME=cls.__name__,
+            FIELD="export_data"
+        ))
+        try:
+            for i in range(min(len(cls.export_data), PEEK_MAXIMUM)):
+                print(cls.export_data[i])
+        except TypeError:
+            print("current export_data is not iterable")
+
+        print("")
+
+    @classmethod
     def export(cls):
         """
         The output method should be implemented to obtain
         processed data directly.
         """
-        raise NotImplementedError("Extractor.export not implemented!")
+        return cls.export_data
