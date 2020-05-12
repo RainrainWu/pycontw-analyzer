@@ -4,8 +4,12 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+flake8 = "==3.8.0"
 pylint = "==2.5.2"
 invoke = "==1.4.1"
+mypy = "==0.770"
+pytest = "==5.4.2"
+black = "==19.10b0"
 
 [packages]
 python-dotenv = "==0.13.0"

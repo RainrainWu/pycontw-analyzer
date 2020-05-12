@@ -7,9 +7,7 @@ from analyzer.extractor.attendee import Attendee2019
 from analyzer.utils.homogeneous import convert_company_alias
 
 
-lake = {
-    'attendee': Attendee2019.export()
-}
+lake = {"attendee": Attendee2019.export()}
 
 
 def get_attendee_companies_with_times():
@@ -18,7 +16,7 @@ def get_attendee_companies_with_times():
     discoveries.
     """
     roster = {}
-    for attendee in lake['attendee']:
+    for attendee in lake["attendee"]:
         if len(attendee[2]) == 0:
             continue
         company = convert_company_alias(attendee[2])
@@ -36,7 +34,7 @@ def get_attendee_companies_with_jobs():
     get the mapping of attendee company to thier jobs.
     """
     roster = {}
-    for attendee in lake['attendee']:
+    for attendee in lake["attendee"]:
         if len(attendee[2]) == 0:
             continue
         company = convert_company_alias(attendee[2])

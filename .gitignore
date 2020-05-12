@@ -7,3 +7,7 @@ data/*
 
 # Mac artifacts
 .DS_Store
+
+# cached
+.mypy_cache/
+.pytest_cache/
