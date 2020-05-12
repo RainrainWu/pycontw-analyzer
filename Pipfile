@@ -13,6 +13,7 @@ black = "==19.10b0"
 
 [packages]
 python-dotenv = "==0.13.0"
+loguru = "==0.4.1"
 
 [requires]
 python_version = "3.8"

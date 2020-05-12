@@ -3,10 +3,12 @@ analyzer.provider is a unified inerface which provide more
 explainable data for inspecting.
 """
 
+from loguru import logger
+
 from analyzer.extractor.attendee import Attendee2019
 from analyzer.utils.homogeneous import convert_company_alias
 
-
+logger.info("provider start collecting data...")
 lake = {"attendee": Attendee2019.export()}
 
 

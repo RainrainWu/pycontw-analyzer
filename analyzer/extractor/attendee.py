@@ -6,6 +6,8 @@ analyzer.extractor.attendee comtains extractors for attendee data.
 import csv
 from typing import Dict
 
+from loguru import logger
+
 from analyzer.extractor import Extractor
 from analyzer.config import ATTENDEE_STANDARD, ATTENDEE_RESERVED, ATTENDEE_DISCOUNT
 
@@ -34,6 +36,9 @@ class Attendee2019(Extractor):
             "reserved": ATTENDEE_RESERVED,
             "discount": ATTENDEE_DISCOUNT,
         }
+        logger.info(cls.extract_log_tpl.format(
+            NAME=cls.__name__
+        ))
         for group in group_file:
             with open(group_file[group], newline="") as raw:
                 reader = csv.reader(raw)

@@ -5,6 +5,8 @@ analyzer.extractor.programs comtains extractors for programs data.
 
 import csv
 
+from loguru import logger
+
 from analyzer.extractor import Extractor
 from analyzer.config import PROGRAM_2019
 
@@ -25,6 +27,9 @@ class Program2019(Extractor):
         """
         extract from raw data.
         """
+        logger.info(cls.extract_log_tpl.format(
+            NAME=cls.__name__
+        ))
         with open(PROGRAM_2019, newline="") as raw:
             reader = csv.reader(raw)
             cls.hold_data = list(reader)
