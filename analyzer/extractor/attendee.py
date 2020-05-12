@@ -1,3 +1,8 @@
+"""
+analyzer.extractor.attendee comtains extractors for attendee data.
+"""
+
+
 import csv
 
 from analyzer.extractor import Extractor
@@ -8,8 +13,10 @@ from analyzer.config import (
 )
 
 
-class Attendee_2019(Extractor):
-
+class Attendee2019(Extractor):
+    """
+    Attendee_2019 is a extractor for attendee data in 2019.
+    """
     group_data = {}
     topic_header = {
         'seniority': 'Years of Using Python / 使用 Python 多久',
@@ -22,19 +29,24 @@ class Attendee_2019(Extractor):
 
     @classmethod
     def extract(cls):
-
+        """
+        extract from raw data.
+        """
         group_file = {
             'standard': ATTENDEE_STANDARD,
             'reserved': ATTENDEE_RESERVED,
             'discount': ATTENDEE_DISCOUNT,
         }
         for group in group_file:
-            with open(group_file[group], newline='') as rf:
-                reader = csv.reader(rf)
+            with open(group_file[group], newline='') as raw:
+                reader = csv.reader(raw)
                 cls.group_data[group] = list(reader)
 
     @classmethod
     def transform(cls):
+        """
+        transform raw data to well-defined shape.
+        """
 
         # figure out the correspounding indexes for the headers
         # describe in cls.topic_header
@@ -77,14 +89,18 @@ class Attendee_2019(Extractor):
 
     @classmethod
     def peek(cls):
-
+        """
+        peek holding data.
+        """
         for i in range(5):
             print(cls.export_data[i])
 
     @classmethod
     def export(cls):
-
+        """
+        export processed data.
+        """
         return cls.export_data
 
-Attendee_2019.extract()
-Attendee_2019.transform()
+Attendee2019.extract()
+Attendee2019.transform()

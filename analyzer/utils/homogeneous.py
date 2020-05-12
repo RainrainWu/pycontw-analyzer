@@ -1,3 +1,8 @@
+"""
+analyzer.utils.homogeneous is the homogeneous data converter
+which deal with company name via alias table currently.
+"""
+
 company_alias = {
     '中國信託': ['中國信託 數據研究發展中心', '中國信託 數研發'],
     'Gogoro': ['gogoro'],
@@ -22,7 +27,11 @@ company_alias = {
     'EMQ': ['EMQ Inc.'],
 }
 
+
 def convert_company_alias(name):
+    """
+    uniform company name via alias table.
+    """
     for company in company_alias:
         if name in company_alias[company]:
             return company

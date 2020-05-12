@@ -1,11 +1,14 @@
-import os
+"""
+analyzer.config is use to set up static configurations.
+"""
 
 from dotenv import load_dotenv
 
 
 load_dotenv(dotenv_path='../.env')
 
-# raw data directories, using hierarchy structure to concat proper directory
+# raw data directories, using hierarchy structure to concat
+# proper directory.
 DATA = './data'
 
 ## attendee

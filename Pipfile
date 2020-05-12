@@ -4,6 +4,8 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pylint = "==2.5.2"
+invoke = "==1.4.1"
 
 [packages]
 python-dotenv = "==0.13.0"
