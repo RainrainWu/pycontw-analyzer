@@ -17,13 +17,15 @@ You can set up configs in `analyzer/config.py` easily, please refer to the code 
 
 # Development
 ## Architecture
-pycontw-inspector currently construct by three layers:
+pycontw-inspector currently construct by four layers:
 - extractor:
     extract raw data from file.
 - provider:
     collect data form all extractor and provide more explainable data for inspecting.
 - inspector:
     inspect valuable information via implementing strategies.
+- visualizer:
+    visualize the results data.
 
 ## Default Raw Data File Tree
 ```
@@ -47,7 +49,6 @@ data
 - inv style.pylint
 - inv style.flake8
 - inv style.blackcheck
-- inv style.black
 
 ### For Test
 - inv test.pytest

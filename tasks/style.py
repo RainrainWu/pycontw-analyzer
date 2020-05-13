@@ -36,7 +36,7 @@ def mypy(ctx):
     """
     check style through mypy.
     """
-    ctx.run('{PREFIX} mypy {MODULE}'.format(
+    ctx.run('{PREFIX} mypy --ignore-missing-imports {MODULE}'.format(
         PREFIX=PIPENV_PREFIX,
         MODULE=MODULE_NAME
     ))

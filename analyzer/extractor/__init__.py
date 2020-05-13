@@ -61,10 +61,7 @@ class Extractor(abc.ABC):
         current hold_data within the extractor.
         """
         # peek hold data
-        print(cls.peek_tpl.format(
-            NAME=cls.__name__,
-            FIELD="hold_data"
-        ))
+        print(cls.peek_tpl.format(NAME=cls.__name__, FIELD="hold_data"))
         try:
             for i in range(min(len(cls.hold_data), PEEK_MAXIMUM)):
                 print(cls.export_data[i])
@@ -80,10 +77,7 @@ class Extractor(abc.ABC):
         current export_data within the extractor.
         """
         # peek export data
-        print(cls.peek_tpl.format(
-            NAME=cls.__name__,
-            FIELD="export_data"
-        ))
+        print(cls.peek_tpl.format(NAME=cls.__name__, FIELD="export_data"))
         try:
             for i in range(min(len(cls.export_data), PEEK_MAXIMUM)):
                 print(cls.export_data[i])

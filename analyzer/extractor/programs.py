@@ -20,6 +20,7 @@ class Program2019(Extractor):
         "title": "title",
         "category": "category",
         "level": "python_level",
+        "name": "name",
     }
 
     @classmethod
@@ -27,9 +28,7 @@ class Program2019(Extractor):
         """
         extract from raw data.
         """
-        logger.info(cls.extract_log_tpl.format(
-            NAME=cls.__name__
-        ))
+        logger.info(cls.extract_log_tpl.format(NAME=cls.__name__))
         with open(PROGRAM_2019, newline="") as raw:
             reader = csv.reader(raw)
             cls.hold_data = list(reader)
@@ -43,9 +42,7 @@ class Program2019(Extractor):
         # figure out the correspounding indexes for the headers
         # describe in cls.topic_header
         topic_index = [
-            cls.hold_data[0].index(x)
-            if x in cls.hold_data[0]
-            else -1
+            cls.hold_data[0].index(x) if x in cls.hold_data[0] else -1
             for x in cls.topic_header.values()
         ]
 

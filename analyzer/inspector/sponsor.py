@@ -25,12 +25,13 @@ def filter_potential_sponsor_by_times(threshhold: int = 5):
 
     company_times = provider.get_attendee_companies_with_times()
     for company in company_times:
-        if all([(x not in company) for x in deprecated_flag]) and \
+        if all([(x not in company) for x in deprecated_flag]) and\
                 int(company_times[company]) > threshhold:
             roster[company] = company_times[company]
 
-    for i in roster:
-        print("{COMPANY} {TIMES}".format(COMPANY=i, TIMES=roster[i]))
+    # for i in roster:
+    #     print("{COMPANY} {TIMES}".format(COMPANY=i, TIMES=roster[i]))
+    return roster
 
 
 def filter_potential_sponsor_by_level():
@@ -55,5 +56,6 @@ def filter_potential_sponsor_by_level():
         if any([x in company_jobs[company] for x in target_job]):
             roster[company] = company_jobs[company]
 
-    for i in roster:
-        print("{COMPANY} {JOBS}".format(COMPANY=i, JOBS=roster[i]))
+    # for i in roster:
+    #     print("{COMPANY} {JOBS}".format(COMPANY=i, JOBS=roster[i]))
+    return roster
