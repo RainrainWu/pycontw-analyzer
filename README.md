@@ -6,6 +6,9 @@ pycontw-inspector is an integrated analyzer that can extract various types of ra
 ## Prerequisites
 - Python 3.8
 
+## Obtain data
+Analyzer will use mock_data with directory `./mock_data/` by default, you can refresh it via run `pipenv run python analyzer/utils/mock_data.py`. For real data, please contact conributors listed below.
+
 ## Run Analyzer
 An example program `analyzer/app.py` would be a great choice for the first try, run it by
 ```
