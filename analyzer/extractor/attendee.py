@@ -9,21 +9,18 @@ from typing import Dict
 from loguru import logger
 
 from analyzer.extractor import Extractor
-from analyzer.config import ATTENDEE_STANDARD, ATTENDEE_RESERVED, ATTENDEE_DISCOUNT
+from analyzer.config import (
+    ATTENDEE_STANDARD,
+    ATTENDEE_RESERVED,
+    ATTENDEE_DISCOUNT,
+    ATTENDEE_COLUMNS
+)
 
 
 class Attendee2019(Extractor):
     """
     Attendee2019 is a extractor for attendee data in 2019.
     """
-
-    topic_header = {
-        "seniority": "Years of Using Python / 使用 Python 多久",
-        "interest": "Area of Interest / 興趣領域",
-        "company": "Company  / 服務單位 (For students or teachers, fill in the School + Department Name)",
-        "job": 'Job Title / 職稱 (If you are a student, fill in "student")',
-        "region": "Come From / 國家或地區",
-    }
     hold_data = {}  # type: Dict[str, list]
 
     @classmethod
@@ -40,9 +37,12 @@ class Attendee2019(Extractor):
             NAME=cls.__name__
         ))
         for group in group_file:
-            with open(group_file[group], newline="") as raw:
-                reader = csv.reader(raw)
-                cls.hold_data[group] = list(reader)
+            try:
+                with open(group_file[group], newline="") as raw:
+                    reader = csv.reader(raw)
+                    cls.hold_data[group] = list(reader)
+            except FileNotFoundError:
+                logger.error(group_file[group] + "raw data file not found")
 
     @classmethod
     def transform(cls):
@@ -51,25 +51,25 @@ class Attendee2019(Extractor):
         """
 
         # figure out the correspounding indexes for the headers
-        # describe in cls.topic_header
+        # describe in ATTENDEE_COLUMNS
         topic_index = {
             "standard": [
                 cls.hold_data["standard"][0].index(x)
                 if x in cls.hold_data["standard"][0]
                 else -1
-                for x in cls.topic_header.values()
+                for x in ATTENDEE_COLUMNS
             ],
             "reserved": [
                 cls.hold_data["reserved"][0].index(x)
                 if x in cls.hold_data["reserved"][0]
                 else -1
-                for x in cls.topic_header.values()
+                for x in ATTENDEE_COLUMNS
             ],
             "discount": [
                 cls.hold_data["discount"][0].index(x)
                 if x in cls.hold_data["discount"][0]
                 else -1
-                for x in cls.topic_header.values()
+                for x in ATTENDEE_COLUMNS
             ],
         }
 
