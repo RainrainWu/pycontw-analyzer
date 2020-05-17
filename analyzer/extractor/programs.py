@@ -8,7 +8,7 @@ import csv
 from loguru import logger
 
 from analyzer.extractor import Extractor
-from analyzer.config import PROGRAM_2019
+from analyzer.config import PROGRAMS_2019, PROGRAMS_COLUMNS
 
 
 class Program2019(Extractor):
@@ -16,22 +16,18 @@ class Program2019(Extractor):
     Program2019 is a extractor for programs data in 2019.
     """
 
-    topic_header = {
-        "title": "title",
-        "category": "category",
-        "level": "python_level",
-        "name": "name",
-    }
-
     @classmethod
     def extract(cls):
         """
         extract from raw data.
         """
         logger.info(cls.extract_log_tpl.format(NAME=cls.__name__))
-        with open(PROGRAM_2019, newline="") as raw:
-            reader = csv.reader(raw)
-            cls.hold_data = list(reader)
+        try:
+            with open(PROGRAMS_2019, newline="") as raw:
+                reader = csv.reader(raw)
+                cls.hold_data = list(reader)
+        except FileNotFoundError:
+            logger.error(PROGRAMS_2019 + "raw data file not found")
 
     @classmethod
     def transform(cls):
@@ -40,10 +36,10 @@ class Program2019(Extractor):
         """
 
         # figure out the correspounding indexes for the headers
-        # describe in cls.topic_header
+        # describe in PROGRAM_COLUMNS
         topic_index = [
             cls.hold_data[0].index(x) if x in cls.hold_data[0] else -1
-            for x in cls.topic_header.values()
+            for x in PROGRAMS_COLUMNS
         ]
 
         # collect data with specified index and reform them

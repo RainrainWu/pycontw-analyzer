@@ -8,6 +8,8 @@ method in order to communicate with analyzer.provider.
 import abc
 from typing import Any
 
+from loguru import logger
+
 from analyzer.config import PEEK_MAXIMUM
 
 
@@ -66,7 +68,7 @@ class Extractor(abc.ABC):
             for i in range(min(len(cls.hold_data), PEEK_MAXIMUM)):
                 print(cls.export_data[i])
         except TypeError:
-            print("current hold_data is not iterable")
+            logger.error("current hold_data is not iterable")
 
         print("")
 
@@ -82,7 +84,7 @@ class Extractor(abc.ABC):
             for i in range(min(len(cls.export_data), PEEK_MAXIMUM)):
                 print(cls.export_data[i])
         except TypeError:
-            print("current export_data is not iterable")
+            logger.error("current export_data is not iterable")
 
         print("")
 
