@@ -2,7 +2,6 @@
 analyzer.config is use to set up static configurations.
 """
 
-import sys
 from os import path
 
 from dotenv import load_dotenv
@@ -42,7 +41,7 @@ ATTENDEE_COLUMNS = [
     "Come From / 國家或地區",
 ]
 
-# program
+# programs
 PROGRAMS = DATA + "/programs"
 PROGRAMS_2019 = PROGRAMS + "/program_2019.csv"
 PROGRAMS_COLUMNS = [
@@ -52,6 +51,9 @@ PROGRAMS_COLUMNS = [
     "name",
 ]
 
+# vacancies
+LINKEDIN_ACCUMULATE_UNREACHABLE_MAXIMUM = 10
+LINKEDIN_CONSEQUENT_UNREACHABLE_MAXIMUM = 5
 
 ###############
 #  Mock Data  #
