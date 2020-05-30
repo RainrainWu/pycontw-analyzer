@@ -37,8 +37,11 @@ data
 │   ├── discount_2019.csv
 │   ├── reserved_2019.csv
 │   └── standard_2019.csv
-└── programs
-    └── program_2019.csv
+├── programs
+│   └── program_2019.csv
+└── vacancies
+    ├── cake_resume.csv
+    └── linked_in.csv
 ```
 
 ## Execute Task

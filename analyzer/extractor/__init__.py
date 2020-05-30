@@ -35,6 +35,7 @@ class Extractor(abc.ABC):
     layer = "extracor"
     peek_tpl = "\n===[ {NAME} current {FIELD} ]===\n{SUM} records in total"
     extract_log_tpl = "extractor {NAME} start extracting raw data..."
+    scrape_log_tpl = "extractor {NAME} start scraping from the internet..."
     hold_data = []  # type: Any
     export_data = []  # type: Any
 

@@ -2,12 +2,10 @@
 analyzer.utils.mockdata provides a convenient way to generate mock data.
 """
 
-import os
 import csv
 import random
 
-from loguru import logger
-
+from analyzer.utils.directory import init_dir
 from analyzer.config import (
     ATTENDEE_COLUMNS,
     MOCK_ATTENDEE_STANDARD,
@@ -36,19 +34,6 @@ def random_mask(items):
         if mask[items.index(i)]:
             result += [i]
     return result
-
-
-def create_dir():
-    """
-    Create mock data directory structure.
-    """
-    directories = ["./mock_data", "./mock_data/attendee/", "./mock_data/programs/"]
-    for directory in directories:
-        try:
-            if not os.path.exists(directory):
-                os.mkdir(directory)
-        except FileExistsError:
-            logger.error("Directory " + directory + " aready exists")
 
 
 def mock_data_attendee():
@@ -103,6 +88,6 @@ def mock_data_programs():
                 writer.writerow([titles[i], categories[i], levels[i], names[i]])
 
 
-create_dir()
+init_dir()
 mock_data_attendee()
 mock_data_programs()

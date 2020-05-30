@@ -2,8 +2,11 @@
 analyzer.app is the entrypoint of whole program.
 """
 
+from analyzer.utils.directory import init_dir
 from analyzer.inspector import sponsor, program
 from analyzer.visualizer import sunburst, pie, bar
+
+init_dir()
 
 # Potential sponsors by the numbers of discoveries
 sponsors = sponsor.filter_potential_sponsor_by_times()
