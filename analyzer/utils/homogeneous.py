@@ -32,6 +32,32 @@ company_alias = {
     "EMQ": ["EMQ Inc."],
 }
 
+vacancy_alias = {
+    "DevOps": ["DevOp", "Automation"],
+    "Fintech": ["Fintech", "Finance"],
+    "Embedded": ["Physical"],
+    "Quality Assurance": ["Quality", "QA", "Test", "Validation"],
+    "Web": ["Back End", "Backend", "Frontend", "Full Stack", "Django", "後端", "前端"],
+    "App": ["Application", "iOS"],
+    "Cloud": ["雲端"],
+    "Consultant": ["Consultant"],
+    "Manager": ["經理", "Lead"],
+    "Machine Learning": ["機器視覺", "Computer Vision", "Deep Learning"],
+    "Data": ["Analyst", "大數據", "分析", "資料", "數據"],
+    "AI": ["人工智慧"],
+    "Algorithm": ["演算法", "Algorithm"],
+    "Researcher": ["Researcher", "R&D", "Research"],
+    "Software Engineer": [
+        "工程師",
+        "程式設計師",
+        "Software",
+        "ARCHITECT",
+        "Architect",
+        "Engineer",
+        "Developer"
+    ],
+}
+
 
 def convert_company_alias(name):
     """
@@ -41,3 +67,13 @@ def convert_company_alias(name):
         if name in company_alias[company]:
             return company
     return name
+
+
+def convert_vacancy_alias(name):
+    """
+    uniform vacancy type via alias table.
+    """
+    for vacancy in vacancy_alias:
+        if vacancy in name or any([x in name for x in vacancy_alias[vacancy]]):
+            return vacancy
+    return "Others"

@@ -33,3 +33,15 @@ def get_number_of_categories_and_levels():
         proportions[category] = breakdown
 
     return proportions
+
+def get_proportion_of_vacancies():
+    """
+    get proportion of each vacancy type.
+    """
+    vacancies = provider.get_number_of_vancacies_with_type()
+    total = sum(vacancies.values())
+    proportion = {}
+    for i in vacancies:
+        proportion[i] = round(vacancies[i] / total, 2)
+
+    return proportion
