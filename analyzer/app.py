@@ -20,6 +20,10 @@ print(sponsors)
 mapping = program.get_proportion_of_categories()
 pie.plot_dict(mapping)
 
+# Pie chart for proportions of each vacancy type
+vacancies = program.get_proportion_of_vacancies()
+pie.plot_dict(vacancies)
+
 # Sunburst chart for program hierarchy
 hier = program.get_number_of_categories_and_levels()
 sunburst.plot_two_levels_dict(hier)

@@ -7,7 +7,8 @@ from loguru import logger
 
 from analyzer.extractor.attendee import Attendee2019
 from analyzer.extractor.programs import Program2019
-from analyzer.utils.homogeneous import convert_company_alias
+from analyzer.extractor.vacancies import VacancyLinkedIn, VacancyCakeResume
+from analyzer.utils.homogeneous import convert_company_alias, convert_vacancy_alias
 
 logger.info("provider start collecting data...")
 lake = {"attendee": Attendee2019.export(), "programs": Program2019.export()}
@@ -65,3 +66,21 @@ def get_session_categories_with_levels():
     # for i in categories:
     #     print("{CATEGORY} {TITLES}".format(CATEGORY=i, TITLES=categories[i]))
     return categories
+
+
+def get_number_of_vancacies_with_type():
+    """
+    get the mapping of vacancy to their type.
+    """
+    vacancies_pre = [x[1] for x in VacancyLinkedIn.export()[1:]]
+    vacancies_pre += [x[1] for x in VacancyCakeResume.export()[1:]]
+    vacancies_post = [convert_vacancy_alias(x) for x in vacancies_pre]
+    vacancies = {}
+    for vacancy in vacancies_post:
+        if vacancy not in vacancies:
+            vacancies[vacancy] = 0
+        vacancies[vacancy] += 1
+
+    # for i in vacancies:
+    #     print("{VACANCY} {NUMBER}".format(VACANCY=i, NUMBER=vacancies[i]))
+    return vacancies
