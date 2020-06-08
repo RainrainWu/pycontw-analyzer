@@ -25,8 +25,10 @@ def filter_potential_sponsor_by_times(threshhold: int = 5):
 
     company_times = provider.get_attendee_companies_with_times()
     for company in company_times:
-        if all([(x not in company) for x in deprecated_flag]) and\
-                int(company_times[company]) > threshhold:
+        if (
+            all([(x not in company) for x in deprecated_flag])
+            and int(company_times[company]) > threshhold
+        ):
             roster[company] = company_times[company]
 
     # for i in roster:

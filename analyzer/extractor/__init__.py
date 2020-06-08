@@ -58,15 +58,19 @@ class Extractor(abc.ABC):
         raise NotImplementedError("Extractor.transform not implemented!")
 
     @classmethod
-    def peek_hold_data(cls):
+    def peek_hold_data(cls, size=PEEK_MAXIMUM, /):
         """
         The peek_hold_data method was implemented to print out
         current hold_data within the extractor.
         """
         # peek hold data
-        print(cls.peek_tpl.format(NAME=cls.__name__, FIELD="hold_data", SUM=len(cls.hold_data)))
+        print(
+            cls.peek_tpl.format(
+                NAME=cls.__name__, FIELD="hold_data", SUM=len(cls.hold_data)
+            )
+        )
         try:
-            for i in range(min(len(cls.hold_data), PEEK_MAXIMUM)):
+            for i in range(min(len(cls.hold_data), size)):
                 print(cls.export_data[i])
         except TypeError:
             logger.error("current hold_data is not iterable")
@@ -74,15 +78,19 @@ class Extractor(abc.ABC):
         print("")
 
     @classmethod
-    def peek_export_data(cls):
+    def peek_export_data(cls, size=PEEK_MAXIMUM, /):
         """
         The peek_export_data method was implemented to print out
         current export_data within the extractor.
         """
         # peek export data
-        print(cls.peek_tpl.format(NAME=cls.__name__, FIELD="export_data", SUM=len(cls.export_data)))
+        print(
+            cls.peek_tpl.format(
+                NAME=cls.__name__, FIELD="export_data", SUM=len(cls.export_data)
+            )
+        )
         try:
-            for i in range(min(len(cls.export_data), PEEK_MAXIMUM)):
+            for i in range(min(len(cls.export_data), size)):
                 print(cls.export_data[i])
         except TypeError:
             logger.error("current export_data is not iterable")

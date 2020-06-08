@@ -13,7 +13,7 @@ from analyzer.config import (
     ATTENDEE_STANDARD,
     ATTENDEE_RESERVED,
     ATTENDEE_DISCOUNT,
-    ATTENDEE_COLUMNS
+    ATTENDEE_COLUMNS,
 )
 
 
@@ -21,6 +21,7 @@ class Attendee2019(Extractor):
     """
     Attendee2019 is a extractor for attendee data in 2019.
     """
+
     hold_data = {}  # type: Dict[str, list]
 
     @classmethod
@@ -33,9 +34,7 @@ class Attendee2019(Extractor):
             "reserved": ATTENDEE_RESERVED,
             "discount": ATTENDEE_DISCOUNT,
         }
-        logger.info(cls.extract_log_tpl.format(
-            NAME=cls.__name__
-        ))
+        logger.info(cls.extract_log_tpl.format(NAME=cls.__name__))
         for group in group_file:
             try:
                 with open(group_file[group], newline="") as raw:

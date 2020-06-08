@@ -19,7 +19,7 @@ def init_dir():
         "./mock_data",
         "./mock_data/attendee/",
         "./mock_data/programs/",
-        "./mock_data/vacancies/"
+        "./mock_data/vacancies/",
     ]
     for directory in directories:
         try:
