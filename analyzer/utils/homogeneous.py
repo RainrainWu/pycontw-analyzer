@@ -54,7 +54,7 @@ vacancy_alias = {
         "ARCHITECT",
         "Architect",
         "Engineer",
-        "Developer"
+        "Developer",
     ],
 }
 

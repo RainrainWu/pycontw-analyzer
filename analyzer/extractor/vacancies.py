@@ -11,7 +11,6 @@ from selenium.common.exceptions import (
     ElementNotInteractableException,
 )
 
-from analyzer.utils.directory import init_dir
 from analyzer.extractor import Extractor
 from analyzer.config import (
     LINKEDIN_CACHE,
@@ -29,6 +28,7 @@ class VacancyLinkedIn(Extractor):
     """
     VacancyLinkedIn is a extractor to scrape openings data from LinkedIn.
     """
+
     hold_data = []
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--headless")
@@ -44,18 +44,14 @@ class VacancyLinkedIn(Extractor):
         """
         extract from cache if exists, else scrape new.
         """
-        logger.info(cls.extract_log_tpl.format(
-            NAME=cls.__name__
-        ))
+        logger.info(cls.extract_log_tpl.format(NAME=cls.__name__))
         try:
             with open(LINKEDIN_CACHE, newline="") as cache:
                 reader = csv.reader(cache)
                 cls.hold_data = list(reader)
         except FileNotFoundError:
             logger.warning(LINKEDIN_CACHE + " cache data file not found")
-            logger.info(cls.scrape_log_tpl.format(
-                NAME=cls.__name__
-            ))
+            logger.info(cls.scrape_log_tpl.format(NAME=cls.__name__))
             cls.scrape()
 
     @classmethod
@@ -137,6 +133,7 @@ class VacancyCakeResume(Extractor):
     """
     VacancyCakeResume is a extractor to scrape openings data from CakeResume.
     """
+
     hold_data = []
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--headless")
@@ -151,18 +148,14 @@ class VacancyCakeResume(Extractor):
         """
         extract from cache if exists, else scrape new.
         """
-        logger.info(cls.extract_log_tpl.format(
-            NAME=cls.__name__
-        ))
+        logger.info(cls.extract_log_tpl.format(NAME=cls.__name__))
         try:
             with open(CAKERESUME_CACHE, newline="") as cache:
                 reader = csv.reader(cache)
                 cls.hold_data = list(reader)
         except FileNotFoundError:
             logger.warning(CAKERESUME_CACHE + " cache data file not found")
-            logger.info(cls.scrape_log_tpl.format(
-                NAME=cls.__name__
-            ))
+            logger.info(cls.scrape_log_tpl.format(NAME=cls.__name__))
             cls.scrape()
 
     @classmethod
@@ -204,10 +197,12 @@ class VacancyCakeResume(Extractor):
                 title_xpath = cls.title_xpath_tpl.format(id=index)
                 company_xpath = cls.company_xpath_tpl.format(id=index)
                 try:
-                    cls.hold_data += [[
-                        cls.driver.find_element_by_xpath(company_xpath).text,
-                        cls.driver.find_element_by_xpath(title_xpath).text
-                    ]]
+                    cls.hold_data += [
+                        [
+                            cls.driver.find_element_by_xpath(company_xpath).text,
+                            cls.driver.find_element_by_xpath(title_xpath).text,
+                        ]
+                    ]
                     unreach_consequent = 0
                 except NoSuchElementException:
                     msg_tpl = "Element {id} data unreachable!"
@@ -228,10 +223,13 @@ class VacancyCakeResume(Extractor):
             # paging
             try:
                 cls.driver.execute_script(
-                    "var q=document.documentElement.scrollTop=" + str(10000 * page_count)
+                    "var q=document.documentElement.scrollTop="
+                    + str(10000 * page_count)
                 )
                 next_xpath = cls.next_xpath_tpl.format(id=page_size * page_count + 1)
-                cls.driver.get(cls.driver.find_element_by_xpath(next_xpath).get_attribute("href"))
+                cls.driver.get(
+                    cls.driver.find_element_by_xpath(next_xpath).get_attribute("href")
+                )
                 page_count += 1
             except NoSuchElementException:
                 print("No next page")

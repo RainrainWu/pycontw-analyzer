@@ -34,6 +34,7 @@ def get_number_of_categories_and_levels():
 
     return proportions
 
+
 def get_proportion_of_vacancies():
     """
     get proportion of each vacancy type.
