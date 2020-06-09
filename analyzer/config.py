@@ -10,6 +10,11 @@ from loguru import logger
 
 load_dotenv(dotenv_path="../.env")
 
+#############
+#  General  #
+#############
+YEAR_TAGS = ["2016", "2017", "2018", "2019"]
+
 ##############
 #  Raw Data  #
 ##############

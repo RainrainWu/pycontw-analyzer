@@ -13,7 +13,7 @@ def plot_dict(mapping):
     plot line chart by mapping.
     """
     try:
-        seq_x = [int(x) for x in mapping]
+        seq_x = [str(x) for x in mapping]
         seq_y = [float(x) for x in mapping.values()]
     except ValueError:
         logger.error("Unable to plot line chart with input data.")

@@ -31,3 +31,7 @@ sunburst.plot_two_levels_dict(hier)
 # Line chart for historical accept rate
 mapping = program.get_trend_of_accept_rate()
 line.plot_dict(mapping)
+
+# Line chart for proposal accumulation
+accumulation = program.get_date_with_proposals_accumulate("2016")
+line.plot_dict(accumulation)

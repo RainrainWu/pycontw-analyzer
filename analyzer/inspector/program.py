@@ -3,9 +3,15 @@ analyzer.inspector.program is a implemeentation of strategy
 logic that helps to obtain proportions of each topic.
 """
 
+import datetime
+
 from analyzer.provider.programs import get_programs_categories_with_levels
 from analyzer.provider.vacancies import get_number_of_vancacies_with_type
-from analyzer.provider.proposals import get_acceptance_with_title
+from analyzer.provider.proposals import (
+    get_acceptance_with_title,
+    get_speakers_with_year,
+    get_date_with_proposals_number,
+)
 
 
 def get_proportion_of_categories():
@@ -64,3 +70,41 @@ def get_trend_of_accept_rate():
         accept_rate[year] = round(accept_num / (accept_num + unaccept_num), 2)
 
     return accept_rate
+
+
+def get_speaker_with_experience(times: int = 2):
+    """
+    get a list of speakers that have gave talks at PyCon TW before.
+
+    - times
+      lowerbound of talk count.
+    """
+
+    speakers = get_speakers_with_year()
+    target = {}
+    for speaker in speakers:
+        if len(speakers[speaker]) >= times:
+            target[speaker] = speakers[speaker]
+
+    return target
+
+
+def get_date_with_proposals_accumulate(year: str = "2019"):
+    """
+    get the accumulation of proposals
+    """
+    submit = get_date_with_proposals_number(year)
+    start = datetime.datetime.strptime(sorted(submit)[0], "%Y-%m-%d")
+    end = datetime.datetime.strptime(sorted(submit)[-1], "%Y-%m-%d")
+    dates = [
+        (start + datetime.timedelta(days=x)).strftime("%Y-%m-%d")
+        for x in range(0, (end - start).days + 1)
+    ]
+    accumulation = 0
+    records = {}
+    for date in dates:
+        if date in submit:
+            accumulation += submit[date]
+        records[date] = accumulation
+
+    return records
