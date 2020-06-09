@@ -56,3 +56,19 @@ def get_date_with_proposals_number(year: str = "2019"):
         submit[date] += 1
 
     return submit
+
+
+def get_proposals_categories_with_levels(year: str = "2019"):
+    """
+    get the mapping of proposals category to their levels.
+    """
+    categories = {}
+    for proposal in lake["proposals"][year]:
+        category = proposal[1]
+        if category not in categories:
+            categories[category] = []
+        categories[category] += [proposal[3]]
+
+    # for i in categories:
+    #     print("{CATEGORY} {TITLES}".format(CATEGORY=i, TITLES=categories[i]))
+    return categories

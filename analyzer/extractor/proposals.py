@@ -9,7 +9,7 @@ from loguru import logger
 
 from analyzer.extractor import Extractor
 
-SQL_FILE = "data/proposals/sql_dump/public.proposals_talkproposal.sql"
+SQL_FILE = "data/proposals/sql_dump/talk.sql"
 proposal_hash_pattern = re.compile("[0-9]+")
 target_index = [1, 2, 3, 6, 12, 13, 15, 16, 17]
 

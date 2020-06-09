@@ -11,6 +11,7 @@ from analyzer.provider.proposals import (
     get_acceptance_with_title,
     get_speakers_with_year,
     get_date_with_proposals_number,
+    get_proposals_categories_with_levels
 )
 
 
@@ -27,13 +28,29 @@ def get_proportion_of_categories():
     return proportions
 
 
-def get_number_of_categories_and_levels():
+def get_number_of_programs_categories_and_levels():
     """
     get proportion of each categories and devided by levels
     """
     levels = ["NOVICE", "INTERMEDIATE", "EXPERIENCED"]
     proportions = {}
     categories = get_programs_categories_with_levels()
+    for category in categories:
+        breakdown = {}
+        for level in levels:
+            breakdown[level] = categories[category].count(level)
+        proportions[category] = breakdown
+
+    return proportions
+
+
+def get_number_of_proposals_categories_and_levels(year: str = "2019"):
+    """
+    get proportion of each proposals categories and devided by levels
+    """
+    levels = ["NOVICE", "INTERMEDIATE", "EXPERIENCED"]
+    proportions = {}
+    categories = get_proposals_categories_with_levels(year)
     for category in categories:
         breakdown = {}
         for level in levels:

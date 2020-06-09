@@ -1,6 +1,6 @@
-# pycontw-inspector
+# pycontw-analyzer
 
-pycontw-inspector is an integrated analyzer that can extract various types of raw data (e.g. attendee, programs, checkins), and inspect some valuable information via customized strategies construct by each team with their different domain knowledge.
+pycontw-inalyzer is an integrated analyzer that can extract various types of raw data (e.g. attendee, programs, checkins), and inspect some valuable information via customized strategies construct by each team with their different domain knowledge.
 
 # Getting Started
 ## Prerequisites
@@ -39,6 +39,10 @@ data
 │   └── standard_2019.csv
 ├── programs
 │   └── program_2019.csv
+├── proposals
+│   └── sql_dump
+│       ├── talk.sql
+│       └── tutorial.sql
 └── vacancies
     ├── cake_resume.csv
     └── linked_in.csv

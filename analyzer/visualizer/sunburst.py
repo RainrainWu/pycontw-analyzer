@@ -6,7 +6,7 @@ chart with structural data.
 from plotly import graph_objects as go
 
 
-def plot_two_levels_dict(hierarchy):
+def plot_two_levels_dict(title, hierarchy):
     """
     plot sunburst with hierarchical dictionary.
     """
@@ -35,5 +35,5 @@ def plot_two_levels_dict(hierarchy):
             ids=ids, labels=labels, parents=parents, values=values, branchvalues="total"
         )
     )
-    fig.update_layout(margin=dict(t=0, l=0, r=0, b=0))
+    fig.update_layout(title=title, margin=dict(t=0, l=0, r=0, b=0))
     fig.show()
