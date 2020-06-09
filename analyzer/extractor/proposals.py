@@ -11,7 +11,7 @@ from analyzer.extractor import Extractor
 
 SQL_FILE = "data/proposals/sql_dump/public.proposals_talkproposal.sql"
 proposal_hash_pattern = re.compile("[0-9]+")
-target_index = [1, 2, 3, 6, 12, 13, 16, 17]
+target_index = [1, 2, 3, 6, 12, 13, 15, 16, 17]
 
 
 class Proposal2019(Extractor):
@@ -148,16 +148,12 @@ class Proposal2016(Extractor):
 
 Proposal2016.extract()
 Proposal2016.transform()
-Proposal2016.peek_export_data()
 
 Proposal2017.extract()
 Proposal2017.transform()
-Proposal2017.peek_export_data()
 
 Proposal2018.extract()
 Proposal2018.transform()
-Proposal2018.peek_export_data()
 
 Proposal2019.extract()
 Proposal2019.transform()
-Proposal2019.peek_export_data()

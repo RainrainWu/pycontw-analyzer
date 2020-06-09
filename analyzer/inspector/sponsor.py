@@ -4,7 +4,10 @@ logic that helps to filter potential sponsors or figure out
 current sponsors behaviours.
 """
 
-from analyzer import provider
+from analyzer.provider.attendee import (
+    get_attendee_companies_with_times,
+    get_attendee_companies_with_jobs,
+)
 
 
 def filter_potential_sponsor_by_times(threshhold: int = 5):
@@ -23,7 +26,7 @@ def filter_potential_sponsor_by_times(threshhold: int = 5):
         "研究所",
     ]
 
-    company_times = provider.get_attendee_companies_with_times()
+    company_times = get_attendee_companies_with_times()
     for company in company_times:
         if (
             all([(x not in company) for x in deprecated_flag])
@@ -53,7 +56,7 @@ def filter_potential_sponsor_by_level():
         "Founder",
     )
 
-    company_jobs = provider.get_attendee_companies_with_jobs()
+    company_jobs = get_attendee_companies_with_jobs()
     for company in company_jobs:
         if any([x in company_jobs[company] for x in target_job]):
             roster[company] = company_jobs[company]
